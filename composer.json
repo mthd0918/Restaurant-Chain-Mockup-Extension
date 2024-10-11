@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Helpers\\": "Helpers/",
+            "Models\\": "Models/",
+            "Interfaces\\": "Interfaces/"
+        }
+    },
+    "require": {
+        "fakerphp/faker": "^1.23",
+        "twbs/bootstrap": "^5.3"
+    }
+}

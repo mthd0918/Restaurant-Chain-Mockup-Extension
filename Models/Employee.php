@@ -1,0 +1,91 @@
+<?php
+namespace Models;
+
+use Interfaces\FileConvertible;
+use DateTime;
+
+class Employee extends User implements FileConvertible
+{
+    public string $jobTitle;
+    public float $salary;
+    public DateTime $startDate;
+    public array $awards; // string[]
+
+    public function __construct(
+        int $id,
+        string $firstName,
+        string $lastName,
+        string $email,
+        string $password,
+        string $phoneNumber,
+        string $address,
+        DateTime $birthDate,
+        DateTime $membershipExpirationDate,
+        string $role,
+        string $jobTitle,
+        float $salary,
+        DateTime $startDate,
+        array $awards
+    ) {
+        parent::__construct($id, $firstName, $lastName, $email, $password, $phoneNumber, $address, $birthDate, $membershipExpirationDate, $role);
+        $this->jobTitle = $jobTitle;
+        $this->salary = $salary;
+        $this->startDate = $startDate;
+        $this->awards = $awards;
+    }
+
+    // FileConvertible インターフェースのメソッドをオーバーライド
+    public function toString(): string
+    {
+        $parentString = parent::toString();
+        return $parentString . sprintf(
+            "Job Title: %s\nSalary: %.2f\nStart Date: %s\nAwards: %s\n",
+            $this->jobTitle,
+            $this->salary,
+            $this->startDate->format('Y-m-d'),
+            implode(', ', $this->awards)
+        );
+    }
+
+    public function toHTML(): string
+    {
+        $parentHTML = parent::toHTML();
+        return str_replace('</div>', '', $parentHTML) . sprintf("
+                <p>Job Title: %s</p>
+                <p>Salary: %.2f</p>
+                <p>Start Date: %s</p>
+                <p>Awards: %s</p>
+            </div>",
+            $this->jobTitle,
+            $this->salary,
+            $this->startDate->format('Y-m-d'),
+            implode(', ', $this->awards)
+        );
+    }
+
+    public function toMarkDown(): string
+    {
+        $parentMarkdown = parent::toMarkdown();
+        return $parentMarkdown . sprintf("
+                - Job Title: %s
+                - Salary: %.2f
+                - Start Date: %s
+                - Awards: %s",
+            $this->jobTitle,
+            $this->salary,
+            $this->startDate->format('Y-m-d'),
+            implode(', ', $this->awards)
+        );
+    }
+
+    public function toArray(): array
+    {
+        $parentArray = parent::toArray();
+        return array_merge($parentArray, [
+            'jobTitle' => $this->jobTitle,
+            'salary' => $this->salary,
+            'startDate' => $this->startDate,
+            'awards' => $this->awards
+        ]);
+    }
+}

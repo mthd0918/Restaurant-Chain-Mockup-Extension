@@ -1,0 +1,78 @@
+@startuml RestaurantChainMockupDiagram
+
+title Restaurant Chain Mockup Diagram
+
+interface FileConvertible {
+    + toString():: string
+    + toHTML():: string
+    + toMarkDown():: string
+    + toArray():: array
+}
+
+class RestaurantChain {
+    + chainId: int
+    + restautantLocations: RestaurantLocation[]
+    + cuisineType: string
+    + numberOfLocations: int
+    + parentCompany: string
+}
+
+class Company {
+    + name: string
+    + foundingYear: int
+    + description: string
+    + website: string
+    + phone: string
+    + industry: string
+    + ceo: string
+    + isPubliclyTraded: bool
+    + country: string
+    + founder: string
+    + totalEmployees: int
+}
+
+class RestaurantLocation {
+    + name: string
+    + address: string
+    + city: string
+    + srate: string
+    + zipCode: string
+    + employees: Employee[]
+    + isOpen: bool
+}
+
+class Employee {
+    + jobTitle: string
+    + salary: float
+    + startDate: DateTime
+    + awards: string[]
+}
+
+class User {
+    + id: int
+    + firstName: string
+    + lastName: string
+    + email: string
+    + hashedPassword: string
+    + phoneNumber: string
+    + sddress: string
+    + birthDate: DateTime
+    + membershipExpirationDate: DateTime
+    + role: string
+
+    + login(password: string)
+    + updateProfile(address: string, phoneNumber: string)
+    + renewMembership(expirationDate: DateTime)
+    + changePassword(newPassword: string)
+    + hasMembershipExpired()
+}
+
+FileConvertible <|.. Company
+FileConvertible <|.. RestaurantLocation
+FileConvertible <|.. Employee
+RestaurantChain <|-- Company: extends
+RestaurantChain "1" --o "0..*" RestaurantLocation: owns
+Employee --o RestaurantLocation: has
+Employee <|-- User: extends
+
+@enduml
