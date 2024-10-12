@@ -40,8 +40,8 @@
                     <input type="number" class="form-control" id="locationCount" name="locationCount" min="1" max="100" value="5">
                 </div>
                 <!-- 郵便番号の範囲を設定 -->
-                <div class="mb-4 fw-bold">
-                    <label class="form-label fw-bold">Range of Postal Code:</label>
+                <div class="mb-4">
+                    <label class="form-label"><strong>Range of Postal Code:</strong></label>
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="minPostalCode" class="form-label">Minimum Postal Code:</label>
