@@ -12,7 +12,7 @@ $format = $_POST['format'] ?? 'html';
 $count = (int)$count;
 
 // ユーザーを生成
-$restaurantChains = \Helpers\RandomGenerator::restaurantChains($count, $count);
+$users = \Helpers\RandomGenerator::restaurantChains($count, $count);
 
 if ($format === 'markdown') {
     header('Content-Type: text/markdown');
