@@ -39,7 +39,7 @@ class Employee extends User implements FileConvertible
     {
         $parentString = parent::toString();
         return $parentString . sprintf(
-            "Job Title: %s\nSalary: %.2f\nStart Date: %s\nAwards: %s\n",
+            "Job Title: %s, Salary: %.2f, Start Date: %s, Awards: %s\n",
             $this->jobTitle,
             $this->salary,
             $this->startDate->format('Y-m-d'),
@@ -49,17 +49,11 @@ class Employee extends User implements FileConvertible
 
     public function toHTML(): string
     {
-        $parentHTML = parent::toHTML();
-        return str_replace('</div>', '', $parentHTML) . sprintf("
-                <p>Job Title: %s</p>
-                <p>Salary: %.2f</p>
-                <p>Start Date: %s</p>
-                <p>Awards: %s</p>
-            </div>",
-            $this->jobTitle,
-            $this->salary,
-            $this->startDate->format('Y-m-d'),
-            implode(', ', $this->awards)
+        return sprintf("ID: %d, Name: %s %s, Salary: $%d",
+            $this->id,
+            $this->firstName,
+            $this->lastName,
+            $this->salary
         );
     }
 

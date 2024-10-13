@@ -11,6 +11,14 @@ $format = $_POST['format'] ?? 'html';
 // パラメータが正しい形式であることを確認
 $count = (int)$count;
 
+$numberOfEmployee = 3;
+$minSalary = 30000;
+$maxSalary = 100000;
+$numberOfLocation = 4;
+$minPostalCode = 10000;
+$maxPostalCode = 99999; 
+
+
 // ユーザーを生成
 $restaurantChains = \Helpers\RandomGenerator::restaurantChains(
     $numberOfEmployee,
@@ -25,12 +33,12 @@ if ($format === 'markdown') {
     header('Content-Type: text/markdown');
     header('Content-Disposition: attachment; filename="restaurantChain.md"');
     foreach ($restaurantChains as $restaurantChain) {
-        echo $user->toMarkdown();
+        echo $restaurantChain->toMarkdown();
     }
 } elseif ($format === 'json') {
     header('Content-Type: application/json');
     header('Content-Disposition: attachment; filename="restaurantChain.json"');
-    $restaurantChainArrayArray = array_map(fn($user) => $user->toArray(), $restaurantChainArray);
+    $restaurantChainArrayArray = array_map(fn($restaurantChain) => $restaurantChain->toArray(), $restaurantChainArray);
     echo json_encode($restaurantChainArrayArray);
 } elseif ($format === 'txt') {
     header('Content-Type: text/plain');
@@ -42,6 +50,7 @@ if ($format === 'markdown') {
     // HTMLをデフォルトに
     header('Content-Type: text/html');
     foreach ($restaurantChains as $restaurantChain) {
-        echo $restaurantChain->toHTML();
+        
+        include "toHTML.php";
     }
 }

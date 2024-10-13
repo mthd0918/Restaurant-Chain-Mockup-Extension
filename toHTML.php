@@ -1,70 +1,83 @@
 <?php
-// コードベースのファイルのオートロード
 spl_autoload_extensions(".php"); 
 spl_autoload_register();
 
-// composerの依存関係のオートロード
 require_once 'vendor/autoload.php';
 
 use Helpers\RandomGenerator;
 
-// // クエリ文字列からパラメータを取得
 $min = $_GET['min'] ?? 5;
 $max = $_GET['max'] ?? 20;
 
-// // パラメータが整数であることを確認
 $min = (int)$min;
 $max = (int)$max;
 
-$restaurantChains = RandomGenerator::restaurantChains(1, 2);
+$numberOfEmployee = 3;
+$minSalary = 30000;
+$maxSalary = 100000;
+$numberOfLocation = 4;
+$minPostalCode = 10000;
+$maxPostalCode = 99999; 
+
+$restaurantChains = RandomGenerator::restaurantChains(
+    $numberOfEmployee,
+    $minSalary,
+    $maxSalary,
+    $numberOfLocation,
+    $minPostalCode,
+    $maxPostalCode
+);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Restaurant Chain Mockup</title>
-        <!-- Bootstrap CSS -->
-        <link href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Bootstrap Bundle JS (includes Popper) -->
-        <script src="vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    </head>
-    <body>
-        <?php foreach ($restaurantChains as $chainIndex => $chain): ?>
-            <div class="container">
-                <!-- restaurant chain name -->
-                <h2 class="m-4 text-center">Restaurant Chain: <?php echo $chain->name; ?></h2>
-                <!-- restaurant chain card -->
-                <div class="card">
-                    <!-- card-header -->
-                    <div class="card-header d-flex align-items-center">
-                        <p class="m-0">Restaurant Chain Information</p>
-                    </div>
-                    <!-- card-body -->
-                    <div class="card-body">
-                            <div class="accordion" id="accordion_<?php echo $chainIndex ?>">
-                            <!-- accordion: chain detail info -->
-                            <?php foreach ($chain->restaurantLocations as $locationIndex => $location): ?>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
-                                                data-bs-target="#collapse_<?php echo $chainIndex ?>_<?php echo $locationIndex ?>" 
-                                                aria-expanded="false" aria-controls="collapse_<?php echo $chainIndex ?>_<?php echo $locationIndex ?>">
-                                            <?php echo $location->name; ?>
-                                        </button>
-                                    </h2>
-                                    <div id="collapse_<?php echo $chainIndex ?>_<?php echo $locationIndex ?>" class="accordion-collapse collapse">
-                                        <div class="accordion-body">
-                                            <?php echo $location->toHTML() ?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Chain Mockup</title>
+    <link href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <?php foreach ($restaurantChains as $chainIndex => $chain): ?>
+        <div class="container">
+            <h2 class="m-4 text-center">Restaurant Chain: <?php echo $chain->name; ?></h2>
+            <div class="card">
+                <div class="card-header d-flex align-items-center">
+                    <p class="m-0">Restaurant Chain Information</p>
+                </div>
+                <div class="card-body">
+                    <div class="accordion" id="accordion_<?php echo $chainIndex ?>">
+                        <?php foreach ($chain->restaurantLocations as $locationIndex => $location): ?>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                            data-bs-target="#collapse_<?php echo $chainIndex ?>_<?php echo $locationIndex ?>" 
+                                            aria-expanded="false" aria-controls="collapse_<?php echo $chainIndex ?>_<?php echo $locationIndex ?>">
+                                        <?php echo $location->name; ?>
+                                    </button>
+                                </h2>
+                                <div id="collapse_<?php echo $chainIndex ?>_<?php echo $locationIndex ?>" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <p><?php echo $location->toHTML() ?></p>
+                                                <h6>Employees: </h6>
+                                                <table class="table table-bordered">
+                                                    <?php foreach($location->employees() as $employee): ?>
+                                                        <tr><td><?php echo $employee->toHTML(); ?></td></tr>
+                                                    <?php endforeach; ?>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            <?php endforeach; ?>
-                        </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
-        <?php endforeach; ?>
-    </body>
+        </div>
+    <?php endforeach; ?>
+</body>
 </html>

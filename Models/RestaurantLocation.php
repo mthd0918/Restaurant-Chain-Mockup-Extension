@@ -45,57 +45,18 @@ class RestaurantLocation implements FileConvertible
         );
     }
 
+    // CompanyのHTML要素を取得
     public function toHTML(): string
     {
-
-        // int $id,
-        // string $firstName,
-        // string $lastName,
-        // string $email,
-        // string $password,
-        // string $phoneNumber,
-        // string $address,
-        // DateTime $birthDate,
-        // DateTime $membershipExpirationDate,
-        // string $role,
-        // string $jobTitle,
-        // float $salary,
-        // DateTime $startDate,
-        // array $awards
-
-        $employeeInfo = "<table class='table table-bordered'>";
-        $employeeInfo .= implode('', array_map(function($employee) {
-            return sprintf(
-                "<tr><td>ID: %d, Name: %s %s, Job Title: %s, Start Date: %s</td></tr>",
-                $employee->id,
-                $employee->firstName,
-                $employee->lastName,
-                $employee->jobTitle,
-                $employee->startDate->format('Y-m-d')
-            );
-        }, $this->employees));
-
-        $employeeInfo .= "</table>";
-
-        // "<p>Company Name: %s, Address: %s, %s, %s ZipCode: %d</p>
-        // <h4>Employees: </h4>
-        // %s"
-
-        return sprintf(
-            "<div class='card'>
-                <div class='card-body'>
-                    <p>Company Name: %s, Address: %s, %s, %s ZipCode: %d</p>
-                    <h6>Employees:</h6>
-                    %s
-                </div>
-            </div>",
+        return printf("CompanyName: %s, Address: %s, ZipCode: %s",
             $this->name,
             $this->address,
-            $this->city,
-            $this->state,
-            $this->zipCode,
-            $employeeInfo
+            $this->zipCode
         );
+    }
+
+    public function employees(): array {
+        return $this->employees;
     }
 
     public function toMarkDown(): string

@@ -60,7 +60,7 @@ class RandomGenerator {
             $faker->dateTimeBetween('-10 years', '+20 years'),
             $faker->randomElement(['admin', 'user', 'editor']),
             $faker->jobTitle,
-            $faker->numberBetween($minSalary, $maxSalary),
+            $faker->randomFloat(2,$minSalary, $maxSalary),
             $faker->dateTimeBetween('-10 years', 'now'),
             $faker->words($faker->numberBetween(0, 5))
         );
@@ -92,6 +92,7 @@ class RandomGenerator {
             int $numberOfEmployee,
             int $minSalary,
             int $maxSalary,
+            int $numberOfLocation,
             int $minPostalCode,
             int $maxPostalCode
         ): RestaurantLocation {
@@ -109,9 +110,10 @@ class RandomGenerator {
     }
 
     public static function restaurantLocations(
-        int $numberOfLocation,
+        int $numberOfEmployee,
         int $minSalary,
         int $maxSalary,
+        int $numberOfLocation,
         int $minPostalCode,
         int $maxPostalCode
     ): array {
@@ -119,9 +121,10 @@ class RandomGenerator {
 
         for ($i = 0; $i < $numberOfLocation; $i++) {
             $restaurantLocations[] = self::restaurantLocation(
-                $numberOfLocation, 
+                $numberOfEmployee, 
                 $minSalary, 
                 $maxSalary,
+                $numberOfLocation, 
                 $minPostalCode,
                 $maxPostalCode
             );
@@ -144,9 +147,10 @@ class RandomGenerator {
         return new RestaurantChain(
             $faker->numberBetween(100000, 999999),
             self::restaurantLocations(
-                $numberOfLocation, 
+                $numberOfEmployee, 
                 $minSalary, 
                 $maxSalary,
+                $numberOfLocation, 
                 $minPostalCode,
                 $maxPostalCode
             ),
