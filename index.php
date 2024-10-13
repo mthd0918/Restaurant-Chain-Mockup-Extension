@@ -65,7 +65,7 @@
                         <option value="txt">Text</option>
                     </select>
                 </div>
-                <div class="text-center mt-5">
+                <div class="text-center p-2">
                     <button type="submit" class="btn btn-primary btn-lg ">Generate</button>
                 </div>
             </form>
