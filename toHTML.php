@@ -1,34 +1,3 @@
-<?php
-spl_autoload_extensions(".php"); 
-spl_autoload_register();
-
-require_once 'vendor/autoload.php';
-
-use Helpers\RandomGenerator;
-
-$min = $_GET['min'] ?? 5;
-$max = $_GET['max'] ?? 20;
-
-$min = (int)$min;
-$max = (int)$max;
-
-$numberOfEmployee = 3;
-$minSalary = 30000;
-$maxSalary = 100000;
-$numberOfLocation = 4;
-$minPostalCode = 10000;
-$maxPostalCode = 99999; 
-
-$restaurantChains = RandomGenerator::restaurantChains(
-    $numberOfEmployee,
-    $minSalary,
-    $maxSalary,
-    $numberOfLocation,
-    $minPostalCode,
-    $maxPostalCode
-);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,8 +12,8 @@ $restaurantChains = RandomGenerator::restaurantChains(
         <div class="container">
             <h2 class="m-4 text-center">Restaurant Chain: <?php echo $chain->name; ?></h2>
             <div class="card">
-                <div class="card-header d-flex align-items-center">
-                    <p class="m-0">Restaurant Chain Information</p>
+                <div class="card-header d-flex align-items-center bg-secondary">
+                    <p class="m-0 text-light">Restaurant Chain Information</p>
                 </div>
                 <div class="card-body">
                     <div class="accordion" id="accordion_<?php echo $chainIndex ?>">

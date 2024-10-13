@@ -92,7 +92,6 @@ class RandomGenerator {
             int $numberOfEmployee,
             int $minSalary,
             int $maxSalary,
-            int $numberOfLocation,
             int $minPostalCode,
             int $maxPostalCode
         ): RestaurantLocation {
@@ -124,7 +123,6 @@ class RandomGenerator {
                 $numberOfEmployee, 
                 $minSalary, 
                 $maxSalary,
-                $numberOfLocation, 
                 $minPostalCode,
                 $maxPostalCode
             );
@@ -179,9 +177,11 @@ class RandomGenerator {
         int $minPostalCode,
         int $maxPostalCode
     ): array {
+        $faker = Factory::create();
         $chains = [];
+        $chainNum = $faker->numberBetween(1, 3);
 
-        for ($i = 0; $i < $numberOfLocation; $i++) {
+        for ($i = 1; $i < $chainNum; $i++) {
             $chains[] = self::restaurantChain(
                 $numberOfEmployee,
                 $minSalary,

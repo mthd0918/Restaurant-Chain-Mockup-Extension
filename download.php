@@ -11,13 +11,12 @@ $format = $_POST['format'] ?? 'html';
 // パラメータが正しい形式であることを確認
 $count = (int)$count;
 
-$numberOfEmployee = 3;
-$minSalary = 30000;
-$maxSalary = 100000;
-$numberOfLocation = 4;
-$minPostalCode = 10000;
+$numberOfEmployee = 2; // 例: 1企業あたりの従業員数
+$minSalary = 30000; // 例: 最低給与
+$maxSalary = 100000; // 例: 最高給与
+$numberOfLocation = 5; // 例: 1チェーンあたりのロケーション数
+$minPostalCode = 10000; // 例: 最小郵便番号
 $maxPostalCode = 99999; 
-
 
 // ユーザーを生成
 $restaurantChains = \Helpers\RandomGenerator::restaurantChains(
