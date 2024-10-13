@@ -12,29 +12,36 @@ $format = $_POST['format'] ?? 'html';
 $count = (int)$count;
 
 // ユーザーを生成
-$users = \Helpers\RandomGenerator::restaurantChains($count, $count);
+$restaurantChains = \Helpers\RandomGenerator::restaurantChains(
+    $numberOfEmployee,
+    $minSalary,
+    $maxSalary,
+    $numberOfLocation,
+    $minPostalCode,
+    $maxPostalCode
+);
 
 if ($format === 'markdown') {
     header('Content-Type: text/markdown');
-    header('Content-Disposition: attachment; filename="users.md"');
-    foreach ($users as $user) {
+    header('Content-Disposition: attachment; filename="restaurantChain.md"');
+    foreach ($restaurantChains as $restaurantChain) {
         echo $user->toMarkdown();
     }
 } elseif ($format === 'json') {
     header('Content-Type: application/json');
-    header('Content-Disposition: attachment; filename="users.json"');
-    $usersArray = array_map(fn($user) => $user->toArray(), $users);
-    echo json_encode($usersArray);
+    header('Content-Disposition: attachment; filename="restaurantChain.json"');
+    $restaurantChainArrayArray = array_map(fn($user) => $user->toArray(), $restaurantChainArray);
+    echo json_encode($restaurantChainArrayArray);
 } elseif ($format === 'txt') {
     header('Content-Type: text/plain');
-    header('Content-Disposition: attachment; filename="users.txt"');
-    foreach ($users as $user) {
-        echo $user->toString();
+    header('Content-Disposition: attachment; filename="restaurantChain.txt"');
+    foreach ($restaurantChains as $restaurantChain) {
+        echo $restaurantChain->toString();
     }
 } else {
     // HTMLをデフォルトに
     header('Content-Type: text/html');
-    foreach ($users as $user) {
-        echo $user->toHTML();
+    foreach ($restaurantChains as $restaurantChain) {
+        echo $restaurantChain->toHTML();
     }
 }
