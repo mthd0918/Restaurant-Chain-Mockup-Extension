@@ -48,8 +48,6 @@ if ($format === 'markdown') {
 } else {
     // HTMLをデフォルトに
     header('Content-Type: text/html');
-    foreach ($restaurantChains as $restaurantChain) {
         
         include "toHTML.php";
-    }
 }

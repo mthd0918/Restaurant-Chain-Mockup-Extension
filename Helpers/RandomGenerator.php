@@ -181,7 +181,7 @@ class RandomGenerator {
         $chains = [];
         $chainNum = $faker->numberBetween(1, 3);
 
-        for ($i = 1; $i < $chainNum; $i++) {
+        for ($i = 0; $i < $chainNum; $i++) {
             $chains[] = self::restaurantChain(
                 $numberOfEmployee,
                 $minSalary,
