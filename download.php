@@ -5,18 +5,44 @@ require_once 'Models/User.php';
 require_once 'Helpers/RandomGenerator.php';
 
 // POSTリクエストからパラメータを取得
-$count = $_POST['count'] ?? 5;
+$numberOfEmployee = $_POST["numberOfEmployee"] ?? 5;
+$salary = $_POST['salary'] ?? 5;
+$numberOfLocation = $_POST['numberOfLocation'] ?? 5;
+$minPostalCode = $_POST['minPostalCode'] ?? "000-0000";
+$maxPostalCode = $_POST['maxPostalCode'] ?? "999-9999";
 $format = $_POST['format'] ?? 'html';
 
 // パラメータが正しい形式であることを確認
-$count = (int)$count;
+$numberOfEmployee = (int)$numberOfEmployee;
 
-$numberOfEmployee = 2; // 例: 1企業あたりの従業員数
-$minSalary = 30000; // 例: 最低給与
-$maxSalary = 100000; // 例: 最高給与
-$numberOfLocation = 5; // 例: 1チェーンあたりのロケーション数
-$minPostalCode = 10000; // 例: 最小郵便番号
-$maxPostalCode = 99999; 
+$salary = 0;
+
+switch ($salary) {
+    case '20000':
+        $minSalary = 20000;
+        $maxSalary = 49999;
+        break;
+    case '50000':
+        $minSalary = 50000;
+        $maxSalary = 79999;
+        break;
+    case '80000':
+        $minSalary = 80000;
+        $maxSalary = PHP_INT_MAX; // 上限なし
+        break;
+    default:
+        $minSalary = 20000;
+        $maxSalary = 49999;
+        break;
+}
+
+$minSalary = (int)$minSalary;
+$maxSalary = (int)$maxSalary;
+
+$minPostalCode = (int)str_replace("-", "", $minPostalCode);
+$maxPostalCode = (int)str_replace("-", "", $maxPostalCode);
+
+$format = (string)$format;
 
 // ユーザーを生成
 $restaurantChains = \Helpers\RandomGenerator::restaurantChains(

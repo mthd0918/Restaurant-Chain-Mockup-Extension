@@ -21,17 +21,9 @@
                 <div class="mb-3 fw-bold">
                     <label for="salary" class="form-label">Salary Range:</label>
                     <select class="form-select" id="salary" name="salary">
-                        <option value="">Select a salary range</option>
-                        <option value="1000">$1,000 - $1,999</option>
-                        <option value="2000">$2,000 - $2,999</option>
-                        <option value="3000">$3,000 - $3,999</option>
-                        <option value="4000">$4,000 - $4,999</option>
-                        <option value="5000">$5,000 - $5,999</option>
-                        <option value="6000">$6,000 - $6,999</option>
-                        <option value="7000">$7,000 - $7,999</option>
-                        <option value="8000">$8,000 - $8,999</option>
-                        <option value="9000">$9,000 - $9,999</option>
-                        <option value="10000">$10,000+</option>
+                        <option value="20000">$20,000 - $49,999</option>
+                        <option value="50000">$50,000 - $79,999</option>
+                        <option value="80000">$80,000+</option>
                     </select>
                 </div>
                 <!-- チェーンの数を入力 -->
