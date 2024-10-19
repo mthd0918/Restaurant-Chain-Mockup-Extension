@@ -14,8 +14,8 @@
             <form action="download.php" method="post">
                 <!-- 従業員の数を選択 -->
                 <div class="mb-3 fw-bold">
-                    <label for="employeeCount" class="form-label">Number of Employees:</label>
-                    <input type="number" class="form-control" id="employeeCount" name="employeeCount" min="1" max="100" value="3">
+                    <label for="numberOfEmployee" class="form-label">Number of Employees:</label>
+                    <input type="number" class="form-control" id="numberOfEmployee" name="numberOfEmployee" min="1" max="100" value="3">
                 </div>
                 <!-- 従業員の給与範囲を選択 -->
                 <div class="mb-3 fw-bold">
@@ -28,8 +28,8 @@
                 </div>
                 <!-- チェーンの数を入力 -->
                 <div class="mb-3 fw-bold">
-                    <label for="locationCount" class="form-label">Number of Locations:</label>
-                    <input type="number" class="form-control" id="locationCount" name="locationCount" min="1" max="100" value="3">
+                    <label for="numberOfLocation" class="form-label">Number of Locations:</label>
+                    <input type="number" class="form-control" id="numberOfLocation" name="numberOfLocation" min="1" max="100" value="3">
                 </div>
                 <!-- 郵便番号の範囲を設定 -->
                 <div class="mb-4">
