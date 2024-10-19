@@ -5,9 +5,9 @@ require_once 'Models/User.php';
 require_once 'Helpers/RandomGenerator.php';
 
 // POSTリクエストからパラメータを取得
-$numberOfEmployee = $_POST["numberOfEmployee"] ?? 5;
-$salary = $_POST['salary'] ?? 5;
-$numberOfLocation = $_POST['numberOfLocation'] ?? 5;
+$numberOfEmployee = $_POST["numberOfEmployee"] ?? 3;
+$salary = $_POST['salary'] ?? 3;
+$numberOfLocation = $_POST['numberOfLocation'] ?? 3;
 $minPostalCode = $_POST['minPostalCode'] ?? "000-0000";
 $maxPostalCode = $_POST['maxPostalCode'] ?? "999-9999";
 $format = $_POST['format'] ?? 'html';

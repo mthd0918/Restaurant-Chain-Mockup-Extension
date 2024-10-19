@@ -15,7 +15,7 @@
                 <!-- 従業員の数を選択 -->
                 <div class="mb-3 fw-bold">
                     <label for="employeeCount" class="form-label">Number of Employees:</label>
-                    <input type="number" class="form-control" id="employeeCount" name="employeeCount" min="1" max="100" value="5">
+                    <input type="number" class="form-control" id="employeeCount" name="employeeCount" min="1" max="100" value="3">
                 </div>
                 <!-- 従業員の給与範囲を選択 -->
                 <div class="mb-3 fw-bold">
@@ -29,7 +29,7 @@
                 <!-- チェーンの数を入力 -->
                 <div class="mb-3 fw-bold">
                     <label for="locationCount" class="form-label">Number of Locations:</label>
-                    <input type="number" class="form-control" id="locationCount" name="locationCount" min="1" max="100" value="5">
+                    <input type="number" class="form-control" id="locationCount" name="locationCount" min="1" max="100" value="3">
                 </div>
                 <!-- 郵便番号の範囲を設定 -->
                 <div class="mb-4">
