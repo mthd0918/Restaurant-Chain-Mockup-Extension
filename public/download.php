@@ -60,11 +60,10 @@ if ($format === 'markdown') {
     foreach ($restaurantChains as $restaurantChain) {
         echo $restaurantChain->toMarkdown();
     }
-} elseif ($format === 'json') {
+}  elseif ($format === 'json') {
     header('Content-Type: application/json');
     header('Content-Disposition: attachment; filename="restaurantChain.json"');
-    $restaurantChainArrayArray = array_map(fn($restaurantChain) => $restaurantChain->toArray(), $restaurantChainArray);
-    echo json_encode($restaurantChainArrayArray);
+    echo json_encode($restaurantChains);
 } elseif ($format === 'txt') {
     header('Content-Type: text/plain');
     header('Content-Disposition: attachment; filename="restaurantChain.txt"');
